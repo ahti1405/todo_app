@@ -1,0 +1,12 @@
+{% extends '_base.html' %}
+{% load crispy_forms_tags%}
+{% block title %}Login{% endblock title %}
+{% block content %}
+<h1>Homepage</h1>
+{% if user.is_authenticated %}
+<h2>Hey, {{ user }}!</h2>
+<p>How are you doing?</p>
+{% else %}
+<p>Please Log In or Sign Up in order to proceed.</p>
+{% endif %}
+{% endblock content %}
