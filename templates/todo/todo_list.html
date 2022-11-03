@@ -2,30 +2,40 @@
 {% block title %}Todo List{% endblock title %}
 {% block content %}
 
+<div class="container">
+
+<div class="add-button">
+  <a class="btn btn-secondary ms-auto" href="{% url 'todo_create'%}">+</a>
+</div>
+
 <div class="main">
-  <h2>Main</h2>
-  
-  <a href="{% url 'todo_create'%}">Add</a>
   <ol>
     {% for todo in todos %}
-    
-    {% if todo.is_main %}
-    <a href="{% url 'todo_detail' todo.pk %}"><li>{{ todo.title }}</li></a>
-    {% endif %}
+      {% if todo.is_main %}
+        {% if todo.is_completed %}
+        <li><s><a href="{% url 'todo_detail' todo.pk %}">{{ todo.title }}</a></s></li>
+        {% else %}
+        <li><a href="{% url 'todo_detail' todo.pk %}">{{ todo.title }}</a></li>
+        {% endif %}
+      {% endif %}
     {% endfor %}
   </ol>
 </div>
 
+
 <div class="secondary">
-  <h2>Secondary</h2>
   <ol>
     {% for todo in todos %}
-    {% if not todo.is_main %}
-    <a href="{% url 'todo_detail' todo.pk %}"><li>{{ todo.title }}</li></a>
-    {% endif %}
+      {% if not todo.is_main %}
+        {% if todo.is_completed %}
+        <li><s><a href="{% url 'todo_detail' todo.pk %}">{{ todo.title }}</a></s></li>
+        {% else %}
+        <li><a href="{% url 'todo_detail' todo.pk %}">{{ todo.title }}</a></li>
+        {% endif %}
+      {% endif %}
     {% endfor %}
   </ol>
-  
+</div>
 </div>
 
 

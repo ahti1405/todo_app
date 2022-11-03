@@ -3,7 +3,8 @@
 {% block title %}Todo Form{% endblock title %}
 {% block content %}
 <div class="container">
-    <form action="" method="post">
+
+    <form class="todo-form" action="" method="post">
         {% csrf_token %}
         {{ form|crispy }}
         <button class="btn btn-success">Submit</button>

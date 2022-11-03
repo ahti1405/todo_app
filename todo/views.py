@@ -27,8 +27,14 @@ class TodoListView(ListView):
     
 
 
-class TodoDetailView(DetailView):
+class TodoDetailView(UserPassesTestMixin, LoginRequiredMixin, DetailView):
     model = Todo
+
+    def test_func(self):
+        todo = self.get_object()
+        if self.request.user == todo.author:
+            return True
+        return False
 
 
 

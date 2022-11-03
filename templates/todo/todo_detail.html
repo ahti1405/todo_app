@@ -2,11 +2,12 @@
 {% block title %}Todo List{% endblock title %}
 {% block content %}
 <div class="container">
-    <h2>{{ todo.title }}</h2>
-    <p>{{ todo.description }}</p>
-    {% if user ==  todo.author %}
+    <a class="mb-2" href="{% url 'todo_list' %}">&larr; Go Back</a>
+    <h2>Title: {{ todo.title }}</h2>
+    <p>Description: {{ todo.description }}</p>
+   
     <a class="btn btn-success" href="{% url 'todo_update' todo.pk %}">Update</a>
     <a class="btn btn-danger" href="{% url 'todo_delete' todo.pk %}">Delete</a>
-    {% endif %}
+    
 </div>
 {% endblock content %}
